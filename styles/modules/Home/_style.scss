@@ -1,0 +1,33 @@
+.home {
+    max-width: 20rem;
+    margin: 20% auto;
+}
+
+.linkedin {
+    max-width: 50rem;
+    margin: 5em auto;
+    @media (max-width: 599px) {
+      margin: 3em auto;
+    }
+
+    .form-control {
+      &:focus {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+    
+    .input-group-text {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .linkedin {
+      color: $linkedin;
+    }
+
+    .twitter {
+      color: $twitter;
+    }
+}
+
