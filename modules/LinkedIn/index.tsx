@@ -23,36 +23,17 @@ export default function LinkedIn(props: LinkedInProps) {
     posts: [],
   });
   const [loading, setLoading] = React.useState(false);
-  let timer:NodeJS.Timeout;
-  const typeWriter = () => {
-    timer = setTimeout(typeWriter, 1000);
-    const span = document.querySelector('.dot') as HTMLSpanElement
-    if (span.innerHTML.length < 5) {
-      span.innerHTML += '.';
-    } else {
-      span.innerHTML = '.'
-    }
-  };
 
-  React.useEffect(() => {
-    if (loading) {
-      typeWriter();
-    } else {
-      clearTimeout(timer)
-    }
-  }, [loading]);
 
   function linkedInFetch(url: string) {
     setLoading(true);
     setLinkedInData({});
-    fetch(`http://localhost:8000/api/linkedin?url=${decodeURI(url)}`, {
+    fetch(`http://104.207.133.48:5000/api/linkedin?url=${decodeURI(url)}`, {
       method: "GET",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     url: decodeURI(url),
-      //   }),
+      // mode: 'no-cors',
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
     })
       .then((r) => r.json())
       .then(setLinkedInData)
@@ -112,11 +93,11 @@ export default function LinkedIn(props: LinkedInProps) {
             <>
               <div>
                 <span>
-                  Scraping page {linkedInUrl} <span className="dot">...</span>
+                  Scraping page {linkedInUrl} &nbsp;
                 </span>
-              </div>
-              <div className="spinner-border" role="status">
+                <span className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
+              </span>
               </div>
             </>
           ) : (
