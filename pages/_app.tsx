@@ -1,9 +1,18 @@
+import React from 'react';
 import Head from "next/head";
 import { AppProps } from "next/app";
 import Script from "next/script";
 import "@/styles/main.scss";
 
-function AppRoot({ Component, pageProps }: AppProps) {
+interface ExtraProps {
+
+}
+
+type NextAppProps<P = any> = {
+  pageProps: P;
+} & Omit<AppProps<P>, "pageProps">
+
+function App({ Component, pageProps }: NextAppProps<ExtraProps>) : JSX.Element {
   return (
     <>
       <Head>
@@ -19,4 +28,4 @@ function AppRoot({ Component, pageProps }: AppProps) {
   );
 }
 
-export default AppRoot;
+export default App;
