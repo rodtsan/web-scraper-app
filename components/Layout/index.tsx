@@ -49,17 +49,17 @@ export default function Layout({ children }: LayoutProps) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Link
+                  Resources
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" href="#">
-                      Action
+                    <Link className="dropdown-item" href="/linkedin/list">
+                      LinkedIn Profiles
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" href="#">
-                      Another action
+                    <Link className="dropdown-item" href="/twitter/list">
+                      Twitter Profiles
                     </Link>
                   </li>
                   <li>
@@ -71,6 +71,9 @@ export default function Layout({ children }: LayoutProps) {
                     </Link>
                   </li>
                 </ul>
+              </li>
+              <li>
+                <span className="avatar d-block"></span>
               </li>
             </ul>
           </div>

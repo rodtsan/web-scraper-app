@@ -1,0 +1,51 @@
+.arrow-button {
+    text-align: center;
+    background-color: #eee;
+    padding: 0.5rem;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    // box-shadow: 0.1rem 0.1rem 0.5rem 0 rgba(50, 50, 50, 0.6);
+    &:hover {
+      color: #eee;
+      background-color: #333;
+    }
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+  
+
+  .arrow-left {
+    &:before {
+      content: '\25c4';
+    }
+  }
+  
+  .arrow-right {
+    &:after {
+      content: '\25ba';
+    }
+  }
+  
+  .arrow-down {
+    &:after {
+      content: '\25bc';
+    }
+  }
+  .arrow-up {
+    &:after {
+      content: '\25b2';
+    }
+  }
+
+  ._ellipsis {
+    display: inline-block;
+    max-width: 28rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
