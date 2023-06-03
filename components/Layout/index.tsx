@@ -10,7 +10,7 @@ export default function Layout({ children }: LayoutProps) {
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" href="/">
-            Web Scraper
+            Web Scraper App
           </Link>
           <button
             className="navbar-toggler"
@@ -31,16 +31,6 @@ export default function Layout({ children }: LayoutProps) {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/linkedin">
-                  LinkedIn
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/twitter">
-                  Twitter
-                </Link>
-              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -49,28 +39,30 @@ export default function Layout({ children }: LayoutProps) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Resources
+                  LinkedIn
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
+                  <li className="dropdown-item">
+                    <Link className="dropdown-item" href="/linkedin">
+                      Web Scraper
+                    </Link>
+                  </li>
+                  <li className="dropdown-item">
                     <Link className="dropdown-item" href="/linkedin/list">
                       LinkedIn Profiles
                     </Link>
                   </li>
-                  <li>
-                    <Link className="dropdown-item" href="/twitter/list">
-                      Twitter Profiles
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" href="#">
-                      Something else here
-                    </Link>
-                  </li>
                 </ul>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/twitter">
+                  Twitter
+                </Link>
+              </li>
+              <li className="nav-item dropdown">
+                <Link className="nav-link" href="/">
+                  About
+                </Link>
               </li>
               <li>
                 <span className="avatar d-block"></span>

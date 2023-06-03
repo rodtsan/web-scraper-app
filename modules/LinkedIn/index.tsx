@@ -52,7 +52,7 @@ export default function LinkedIn(props: LinkedInProps) {
     <Layout>
       <div className="linkedin">
         <h2>
-          Web scrape your <span className="linkedin">LinkedIn</span> page here:
+          Web scrap your <span className="linkedin">LinkedIn</span> page here:
         </h2>
         <br />
         <div className="input-group mb-3">
@@ -82,10 +82,7 @@ export default function LinkedIn(props: LinkedInProps) {
           </button>
         </div>
         <div>
-          <code>Format: https://www.linkedin.com/in/{"{username}"}</code>
-          <span className="d-block">
-            Click <Link href="/linkedin/list">here</Link> to LinkedIn profiles
-          </span>
+          <code className="text-dark">Example: https://www.linkedin.com/in/{"{username}"}</code>
         </div>
         <div>
           <br />
@@ -102,7 +99,7 @@ export default function LinkedIn(props: LinkedInProps) {
             </>
           ) : (
             <div>
-              <h4>Results: </h4>
+              <code className="text-dark h4">Results:</code>
               <JsonViewer value={linkedInData} />
             </div>
           )}

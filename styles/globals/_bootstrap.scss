@@ -23,3 +23,8 @@
   font-size: 1.5rem;
 }
 
+.dropdown-menu {
+  &.show {
+     margin-top: 0.6rem;
+  }
+}

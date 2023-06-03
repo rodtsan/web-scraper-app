@@ -34,7 +34,7 @@ export default function Twitter() {
   return (
     <Layout>
       <div className="linkedin">
-        <h2>Web scrape your <span className="twitter">Twitter</span> page here:</h2>
+        <h2>Web scrap your <span className="twitter">Twitter</span> page here:</h2>
         <br />
         <div className="input-group mb-3">
           <span className="input-group-text bg-white" id="basic-addon1">
