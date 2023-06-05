@@ -49,3 +49,51 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+.json-viewer {
+   position: relative;
+   padding: 2rem;
+   border: 0.1rem solid gray;
+   border-radius: 0.1rem;
+   min-height: 40vh;
+   overflow-y: scroll;
+   overflow-x: auto;
+   &.vh-20 {
+     min-height: 20vh;
+   }
+  .copy-icon {
+    position: absolute;
+    top: 0;
+    right: 0
+  }
+}
+
+.dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  border-width: 1px;
+  border-radius: 1px;
+  // border-color: ${(props) => getColor(props)};
+  border-style: dashed;
+  background-color: #fafafa;
+  color: black;
+  font-weight: bold;
+  font-size: 1.4rem;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+  height: 18rem;
+  .upload-icon {
+    display:inline-block;
+    margin: 0 auto;
+    font-size: 3rem;
+  }
+}
+
+
+.hidden {
+  display: none;
+}
+

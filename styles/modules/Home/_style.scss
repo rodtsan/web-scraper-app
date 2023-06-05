@@ -1,70 +1,10 @@
+
+
 .home {
     max-width: 20rem;
     margin: 20% auto;
 }
 
-.linkedin {
-    max-width: 50rem;
-    margin: 5em auto;
-    @media (max-width: 599px) {
-      margin: 3em auto;
-    }
 
-    .form-control {
-      &:focus {
-        box-shadow: none;
-        outline: none;
-      }
-    }
-    
-    .input-group-text {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
 
-    .linkedin {
-      color: $linkedin;
-    }
-
-    .twitter {
-      color: $twitter;
-    }
-}
-
-.linkedin-list {
-  max-width: 100rem;
-  margin: 5em auto;
-  .row-posts {
-    display: none;
-    margin: 0;
-    padding: 0;
-    min-height: 5rem;
-    max-height: 20rem;
-    &.show {
-      display: table-row;
-    }
-    td {
-      margin: 0;
-      padding: 0;
-    }
-  }
-  .posts-wrapper {
-    background-color: beige;
-    min-height: 5rem;
-    max-height: 20rem;
-    margin: 0;
-    padding: 0 2rem;
-    overflow: hidden;
-    overflow-y: auto;
-    .divider:last-child {
-      display: none;
-    }
-  }
-  @media (max-width: 599px) {
-    margin: 3em auto;
-    .col-hide {
-      display: none;
-    }
-  }
-}
 

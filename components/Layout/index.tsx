@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { Suspense } from "react";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -44,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
                 <ul className="dropdown-menu">
                   <li className="dropdown-item">
                     <Link className="dropdown-item" href="/linkedin">
-                      Web Scraper
+                      Web Scrape Profile
                     </Link>
                   </li>
                   <li className="dropdown-item">
@@ -54,10 +56,28 @@ export default function Layout({ children }: LayoutProps) {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/twitter">
-                  Twitter
-                </Link>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Tools
+                </a>
+                <ul className="dropdown-menu">
+                  <li className="dropdown-item">
+                    <Link className="dropdown-item" href="/transcribe_audio_to_text">
+                      Transcribe Audio to Text
+                    </Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="dropdown-item" href="/convert_audio_to_wav">
+                      Convert any audio types to wav format
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li className="nav-item dropdown">
                 <Link className="nav-link" href="/">
@@ -71,7 +91,21 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </nav>
-      <div className="container">{children}</div>
+      <div className="container">
+        <Suspense
+          fallback={
+            <Image
+              alt=""
+              src="/images/loading.gif"
+              width={200}
+              height={200}
+              className="loading"
+            />
+          }
+        >
+          {children}
+        </Suspense>
+      </div>
     </div>
   );
 }

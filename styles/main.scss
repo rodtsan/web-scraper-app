@@ -34,6 +34,20 @@ body {
    position: relative;
 }
 
+.main-layout > .container {
+   padding: 0;
+   margin: 0 auto;
+   position: relative;
+   .loading {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+   }
+     
+}
+
 .avatar {
    min-width: 20rem;
 }
