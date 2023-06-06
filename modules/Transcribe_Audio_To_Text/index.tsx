@@ -131,18 +131,6 @@ export default function Converter() {
             </div>
           ) : (
             <div>
-              <div className="audio-player">
-                {audioFile && audioFile?.filename && (
-                  <audio controls={false}>
-                    <source
-                      src={`http://127.0.0.1:5000/temp/${audioFile?.filename}`}
-                      type={audioFile?.content_type}
-                    />
-                    <source src="horse.mp3" type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                )}
-              </div>
               <div className="json-viewer vh-20">
                 <JsonViewer value={transcriptData} rootName={false} />
                 <span title="copy" className="btn copy-icon" role="button">
