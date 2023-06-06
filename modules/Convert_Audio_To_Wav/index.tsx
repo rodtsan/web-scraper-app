@@ -29,8 +29,11 @@ export default function Converter() {
           const data = new FormData();
           data.append("file", file);
           setTimeout(() => {
-            fetch("http://127.0.0.1:5000/api/convert-audio-to-wav", {
+            fetch("https://api.rodtsan.xyz/api/convert-audio-to-wav", {
               method: "POST",
+              // headers: {
+              //   "content-type": "multipart/form-data"
+              // },
               body: data,
             })
               .then((r) => r.json())
@@ -100,7 +103,7 @@ export default function Converter() {
               <div className="audio-player">
                 {audioFile?.filename && (
                   <>
-                    <audio controls={true} src={`http://127.0.0.1:5000/temp/${audioFile?.filename}`}>
+                    <audio controls={true} src={`https://api.rodtsan.xyz/temp/${audioFile?.filename}`}>
                       Your browser does not support the audio element.
                     </audio>
                   </>

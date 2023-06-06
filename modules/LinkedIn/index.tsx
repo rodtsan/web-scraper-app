@@ -26,7 +26,7 @@ export default function LinkedIn(props: LinkedInProps) {
   function linkedInFetch(url: string) {
     setLoading(true);
     setLinkedInData({});
-    fetch(`http://127.0.0.1:5000/api/linkedin/web-scrape-page?url=${decodeURI(url)}`, {
+    fetch(`https://api.rodtsan.xyz/api/linkedin/web-scrape-page?url=${decodeURI(url)}`, {
       method: "GET",
       // mode: 'no-cors',
       // headers: {

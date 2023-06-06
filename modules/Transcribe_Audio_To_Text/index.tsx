@@ -41,8 +41,11 @@ export default function Converter() {
           const data = new FormData();
           data.append("file", file);
           setTimeout(() => {
-            fetch("http://127.0.0.1:5000/api/audio/upload", {
+            fetch("https://api.rodtsan.xyz/api/audio/upload", {
               method: "POST",
+              // headers: {
+              //   "content-type": "multipart/form-data"
+              // },
               body: data,
             })
               .then((r) => r.json())
@@ -52,7 +55,7 @@ export default function Converter() {
                   setLoading(true);
                   setMessage("Transcripting audio to text...");
                   fetch(
-                    `http://127.0.0.1:5000/api/transcribe-audio-to-text?file=${t.filename}`,
+                    `https://api.rodtsan.xyz/api/transcribe-audio-to-text?file=${t.filename}`,
                     {
                       method: "GET",
                     }
