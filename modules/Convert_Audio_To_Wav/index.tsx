@@ -9,10 +9,19 @@ interface AudioFile {
   filename?: string;
   content_type?: string;
   message?: string;
+  ok?: boolean;
 }
 
-export default function Converter() {
-  const [errorMessage, setErrorMessage] = React.useState("");
+interface ConvertAudioToWavProps {
+  apiEndpoint: string;
+}
+
+// const apiEndpoint = String(process.env.NEXT_PUBLIC_BACKEND_API)
+
+export default function ConvertAudioToWav({
+  apiEndpoint,
+}: ConvertAudioToWavProps) {
+  const [errorMessage, setErrorMessage] = React.useState<any>();
   const [audioFile, setAudioFile] = React.useState<AudioFile>({});
   const [loading, setLoading] = React.useState(false);
 
@@ -28,22 +37,18 @@ export default function Converter() {
           setErrorMessage("");
           const data = new FormData();
           data.append("file", file);
-          setTimeout(() => {
-            fetch("https://api.rodtsan.xyz/api/convert-audio-to-wav", {
-              method: "POST",
-              // headers: {
-              //   "content-type": "multipart/form-data"
-              // },
-              body: data,
-            })
-              .then((r) => r.json())
-              .then(setAudioFile)
-              .catch((e) => {
-                setErrorMessage(e.message);
-                setAudioFile({});
-              })
-              .finally(() => setLoading(false));
-          }, 1000);
+          fetch(`${apiEndpoint}/api/convert_audio_to_wav`, {
+            method: "POST",
+            // mode: "no-cors",
+            // headers: {
+            //   "content-type": "multipart/form-data"
+            // },
+            body: data,
+          })
+            .then((r) => r.json())
+            .then(setAudioFile)
+            .catch(setErrorMessage)
+            .finally(() => setLoading(false));
         } else {
           setErrorMessage("Unsupported audio format");
           return;
@@ -54,7 +59,7 @@ export default function Converter() {
 
   return (
     <Layout>
-      <div className="transcribe-audio-to-text">
+      <div className="convert_audio_to_wav_page">
         <h2>Convert Audio to WAV format</h2>
         <br />
         <section
@@ -89,7 +94,7 @@ export default function Converter() {
         </section>
         <div>
           <br />
-          <span className="h4 text-danger">{errorMessage}</span>
+          <span className="h4 text-danger">{JSON.stringify(errorMessage)}</span>
           <br />
           {loading ? (
             <div>
@@ -105,7 +110,7 @@ export default function Converter() {
                   <>
                     <audio
                       controls={true}
-                      src={`https://api.rodtsan.xyz/temp/${audioFile?.filename}`}
+                      src={`${apiEndpoint}/api/download_audio_file/${audioFile?.filename}`}
                     >
                       Your browser does not support the audio element.
                     </audio>
@@ -123,7 +128,7 @@ export default function Converter() {
                       <li className="list-group-item">
                         <a
                           download
-                          href={`https://api.rodtsan.xyz/temp/${audioFile?.filename}`}
+                          href={`${apiEndpoint}/api/download_audio_file/${audioFile?.filename}`}
                           className="text-decoration-none"
                         >
                           <svg

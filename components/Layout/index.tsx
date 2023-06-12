@@ -9,10 +9,10 @@ export interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="main-layout">
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-dark bg-dark navbar-expand-md bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" href="/">
-            Web Scraper App
+            <i className="fa fa-solid fa-code"></i> <span className="navbar_brand_text">Web Scraper App</span>
           </Link>
           <button
             className="navbar-toggler"
@@ -68,13 +68,24 @@ export default function Layout({ children }: LayoutProps) {
                 </a>
                 <ul className="dropdown-menu">
                   <li className="dropdown-item">
-                    <Link className="dropdown-item" href="/transcribe_audio_to_text">
+                    <Link
+                      className="dropdown-item"
+                      href="/transcribe_audio_to_text"
+                    >
                       Transcribe Audio to Text
                     </Link>
                   </li>
                   <li className="dropdown-item">
-                    <Link className="dropdown-item" href="/convert_audio_to_wav">
+                    <Link
+                      className="dropdown-item"
+                      href="/convert_audio_to_wav"
+                    >
                       Convert any audio types to wav format
+                    </Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="dropdown-item" href="/word_embedding">
+                      Word Embeddings | Text Examples
                     </Link>
                   </li>
                 </ul>
@@ -91,7 +102,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </nav>
-      <div className="container">
+      <div className="layout-content">
         <Suspense
           fallback={
             <Image
@@ -103,7 +114,7 @@ export default function Layout({ children }: LayoutProps) {
             />
           }
         >
-          {children}
+          <div className="content">{children}</div>
         </Suspense>
       </div>
     </div>

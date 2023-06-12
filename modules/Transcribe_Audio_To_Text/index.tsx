@@ -11,7 +11,13 @@ interface AudioFile {
   message?: string;
 }
 
-export default function Converter() {
+interface TranscribeAudioToTextProps {
+  apiEndpoint: string;
+}
+
+export default function TranscribeAudioToText({
+  apiEndpoint,
+}: TranscribeAudioToTextProps) {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [message, setMessage] = React.useState<string | null>(null);
   const [transcriptData, setTranscriptData] = React.useState({});
@@ -33,33 +39,33 @@ export default function Converter() {
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
-        const ext = file.name.split(".").pop()?.toLowerCase();
-        if (audio_formats.includes(ext!)) {
+        // const ext = file.name.split(".").pop()?.toLowerCase();
+        const type = file.type.toLowerCase();
+        if (type.includes("audio")) {
           setLoading(true);
           setMessage("Uploading audio file...");
           setErrorMessage("");
           const data = new FormData();
           data.append("file", file);
           setTimeout(() => {
-            fetch("https://api.rodtsan.xyz/api/audio/upload", {
+            fetch(`${apiEndpoint}/api/upload_audio`, {
               method: "POST",
-              // headers: {
-              //   "content-type": "multipart/form-data"
-              // },
               body: data,
             })
               .then((r) => r.json())
               .then((t) => {
                 if (t.filename) {
-                  setAudioFile(t);
                   setLoading(true);
                   setMessage("Transcripting audio to text...");
-                  fetch(
-                    `https://api.rodtsan.xyz/api/transcribe-audio-to-text?file=${t.filename}`,
-                    {
-                      method: "GET",
-                    }
-                  )
+                  fetch(`${apiEndpoint}/api/transcribe_audio_to_text`, {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      file: t.filename,
+                    }),
+                  })
                     .then((r) => r.json())
                     .then(setTranscriptData)
                     .catch((e) => setErrorMessage(e.message))
@@ -72,7 +78,6 @@ export default function Converter() {
               .catch((e) => {
                 setErrorMessage(e.message);
                 setMessage(null);
-                setAudioFile({});
                 setLoading(false);
               });
           }, 1000);
@@ -84,9 +89,13 @@ export default function Converter() {
     },
   });
 
+  const handleCopy = (event: React.MouseEvent<HTMLElement, Event>) => {
+    navigator.clipboard.writeText(JSON.stringify(transcriptData));
+  };
+
   return (
     <Layout>
-      <div className="transcribe-audio-to-text">
+      <div className="transcribe_audio_to_text_page">
         <h2>Transcribe Audio to Text</h2>
         <br />
         <section
@@ -133,7 +142,12 @@ export default function Converter() {
             <div>
               <div className="json-viewer vh-20">
                 <JsonViewer value={transcriptData} rootName={false} />
-                <span title="copy" className="btn copy-icon" role="button">
+                <span
+                  title="copy"
+                  className="btn copy-icon"
+                  role="button"
+                  onClick={handleCopy}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

@@ -1,20 +1,16 @@
-import React from 'react';
+import React from "react";
 import Head from "next/head";
-import { AppProps } from "next/app";
 import Script from "next/script";
-import "@/styles/main.scss";
+import { AppProps } from "next/app";
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "@/common/apolloClient";
+import { appConfig } from "@/common/appConfig";
+import "@/styles/site.scss";
 
-interface ExtraProps {
-
-}
-
-type NextAppProps<P = any> = {
-  pageProps: P;
-} & Omit<AppProps<P>, "pageProps">
-
-function App({ Component, pageProps }: NextAppProps<ExtraProps>) : JSX.Element {
+function App({ Component, pageProps }: AppProps): JSX.Element {
+  const client = useApollo(pageProps.initialApolloState);
   return (
-    <>
+    <ApolloProvider client={client}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -23,8 +19,8 @@ function App({ Component, pageProps }: NextAppProps<ExtraProps>) : JSX.Element {
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossOrigin="anonymous"
       />
-      <Component {...pageProps} />
-    </>
+      <Component {...pageProps} {...appConfig} />
+    </ApolloProvider>
   );
 }
 

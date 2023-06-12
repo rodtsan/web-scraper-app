@@ -1,4 +1,5 @@
 
+
 .navbar {
   background-color: bisque;
 }
@@ -26,5 +27,13 @@
 .dropdown-menu {
   &.show {
      margin-top: 0.6rem;
+  }
+}
+
+.form-control {
+  &::placeholder {
+     font-style: italic;
+     font-size: small;
+     color: rgb(184, 182, 182);
   }
 }

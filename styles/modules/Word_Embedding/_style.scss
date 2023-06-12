@@ -1,0 +1,38 @@
+.word_embedding_page {
+    max-width: 120rem;
+    margin: 5em auto;
+  
+    @media (max-width: 599px) {
+      margin: 3em auto;
+    }
+  
+    .form-control {
+      &:focus {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+  
+    .input-group-text {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .topic_title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table_wrapper {
+       position: relative;
+       min-height: 20rem;
+       .spinner-wrapper {
+          display: inline-block;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);  
+       }
+    }
+  }

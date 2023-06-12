@@ -1,19 +1,20 @@
+import { initializeApollo } from "@/common/apolloClient";
+import { GET_PROFILES } from "@/common/gqlTags/queries";
+import { ProfilesData } from "@/common/models";
 import { GetServerSidePropsContext } from "next";
-
 export { default } from "@/modules/LinkedIn/List";
 
 export const getServerSideProps = async (
-    context: GetServerSidePropsContext
-  ) => {
-    const res = await fetch("http://127.0.0.1:5000/api/linkedin/profiles", {
-      method: 'GET',
-      mode: 'no-cors'
-    })
-    const data = await res.json();
-    return {
-      props: {
-         linkedin_authors: data
-      },
-    };
+  context: GetServerSidePropsContext
+) => {
+  const client = initializeApollo();
+  const { data } = await client.query<ProfilesData>({
+    query: GET_PROFILES,
+  });
+  return {
+    props: {
+      profiles: [],
+      ...data
+    },
   };
-  
+};

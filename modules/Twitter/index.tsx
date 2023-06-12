@@ -11,7 +11,7 @@ export default function Twitter() {
   function twitterFetch(url: string) {
     setLoading(true);
     setTwitterData({});
-    fetch(`http://localhost:8000/api/twitter?url=${decodeURI(url)}`, {
+    fetch(`http://127.0.0.1:5000/api/twitter?url=${decodeURI(url)}`, {
       method: "GET",
       //   headers: {
       //     "Content-Type": "application/json",
@@ -34,8 +34,11 @@ export default function Twitter() {
   };
   return (
     <Layout>
-      <div className="linkedin">
-        <h2>Web scrap your <span className="t-twitter">Twitter</span> page here:</h2>
+      <div className="twitter_page">
+        <h2>
+          Web scrap your <span className="text-twitter">Twitter</span> page
+          here:
+        </h2>
         <br />
         <div className="input-group mb-3">
           <span className="input-group-text bg-white" id="basic-addon1">

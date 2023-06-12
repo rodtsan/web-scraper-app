@@ -1,3 +1,5 @@
+$box-shadow: 0 .5rem 1rem rgba(black, .15);
+
 .arrow-button {
     text-align: center;
     background-color: #eee;
@@ -50,6 +52,41 @@
     text-overflow: ellipsis;
   }
 
+  ._ellipsis_4l {
+    display: -webkit-box;
+    max-width: auto;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+
+  .ellipsis_multi {
+    display: -webkit-box;
+    max-width: auto;
+   // -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    &:not(.more) {
+      -webkit-line-clamp: 3;
+    }
+    .more_or_less {
+      position: absolute;
+      bottom: -0.8rem;
+      right: 0rem;
+      font-size: small;
+      font-style: italic;
+      &:active, &:focus {
+        box-shadow: none;
+      }  
+    }
+  }
+
 .json-viewer {
    position: relative;
    padding: 2rem;
@@ -63,8 +100,12 @@
    }
   .copy-icon {
     position: absolute;
+    opacity: 0.6;
     top: 0;
-    right: 0
+    right: 0;
+    &:active, &:focus {
+      opacity: 1;
+    }
   }
 }
 

@@ -3,20 +3,26 @@ import classNames from "classnames";
 import { JsonViewer } from "@textea/json-viewer";
 import Layout from "@/components/Layout";
 
-
 interface LinkedInProps {
   linkedin_authors?: [];
   error?: string;
+  apiEndpoint: string;
 }
 
 interface LinkedInResponse {
   name?: string;
   description?: string;
-  posts?: { date_posted?: string; comments?: string }[];
-  error?: string;
+  link?: string;
+  posts?: {
+    name?: string;
+    description?: string;
+    posted_by?: string;
+    date_posted?: string;
+    comments?: string;
+  }[];
 }
 
-export default function LinkedIn(props: LinkedInProps) {
+export default function LinkedIn({ apiEndpoint }: LinkedInProps) {
   const [linkedInUrl, setLinkedUrl] = React.useState("");
   const [linkedInData, setLinkedInData] = React.useState<LinkedInResponse>({
     posts: [],
@@ -26,7 +32,7 @@ export default function LinkedIn(props: LinkedInProps) {
   function linkedInFetch(url: string) {
     setLoading(true);
     setLinkedInData({});
-    fetch(`https://api.rodtsan.xyz/api/linkedin/web-scrape-page?url=${decodeURI(url)}`, {
+    fetch(`${apiEndpoint}/api/linkedin/web-scrape-page?url=${decodeURI(url)}`, {
       method: "GET",
       // mode: 'no-cors',
       // headers: {
@@ -46,11 +52,16 @@ export default function LinkedIn(props: LinkedInProps) {
     linkedInFetch(linkedInUrl);
   };
 
+  const handleCopy = (event: React.MouseEvent<HTMLElement, Event>) => {
+    navigator.clipboard.writeText(JSON.stringify(linkedInData));
+  };
+
   return (
     <Layout>
-      <div className="linkedin">
+      <div className="linkedin_page">
         <h2>
-          Web scrape your <span className="t-linkedin">LinkedIn</span> page here:
+          Web scrape your <span className="t-linkedin">LinkedIn</span> page
+          here:
         </h2>
         <br />
         <div className="input-group mb-3">
@@ -99,7 +110,12 @@ export default function LinkedIn(props: LinkedInProps) {
             <div>
               <div className="json-viewer">
                 <JsonViewer value={linkedInData} rootName={false} />
-                <span title="copy" className="btn copy-icon" role="button">
+                <span
+                  title="copy"
+                  className="btn copy-icon"
+                  role="button"
+                  onClick={handleCopy}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

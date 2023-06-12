@@ -1,0 +1,21 @@
+.transcribe_audio_to_text_page, .convert_audio_to_wav_page {
+  max-width: 60rem;
+  margin: 5em auto;
+  padding: 2rem;
+
+  @media (max-width: 599px) {
+    margin: 3em auto;
+  }
+
+  .form-control {
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  .input-group-text {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

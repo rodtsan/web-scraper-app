@@ -1,7 +1,3 @@
-@import "./globals/style";
-
-@import "./modules/style";
-
 html {
     font-size: 62.5%; //1rem = 10px   10px/16px=62.5%
 
@@ -32,6 +28,9 @@ body {
    max-width: 192rem;
    margin:0 auto;
    position: relative;
+   .navbar_brand_text {
+     font-size: 85%;
+   }
 }
 
 .main-layout > .container {
@@ -45,7 +44,11 @@ body {
       transform: translateX(-50%);
       z-index: 9999;
    }
-     
+}
+
+.layout-content {
+   margin: 0;
+   padding:1rem;
 }
 
 .avatar {
